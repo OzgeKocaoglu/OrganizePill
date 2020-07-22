@@ -5,8 +5,11 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
+    private Vector3 refPositionObject;
     private Vector3 mOffSet;
     private float mZCoord;
+
+
 
     void OnMouseDown()
     {
@@ -25,6 +28,8 @@ public class InputManager : MonoBehaviour
 
     void OnMouseDrag()
     {
-        transform.position = new Vector3(GetMouseWorldPos().x + mOffSet.x, GetMouseWorldPos().y + mOffSet.y,2);
+        refPositionObject = new Vector3(0f, 0f);
+        transform.position = new Vector3(GetMouseWorldPos().x + refPositionObject.x, GetMouseWorldPos().y + mOffSet.y, 0);
+        transform.localScale = new Vector3(3f, 3f, 3f);
     }
 }
