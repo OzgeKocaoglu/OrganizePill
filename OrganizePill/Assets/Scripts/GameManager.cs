@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
             {
                 Instantiate(_pill[i], _spawnPoint.transform.position, Quaternion.identity);
             } 
-           
         }
    }
 
