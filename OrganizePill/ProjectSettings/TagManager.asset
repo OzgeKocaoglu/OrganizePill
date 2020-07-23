@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - pill1
+  - pill2
+  - pill3
+  - bottle1
+  - bottle2
+  - bottle3
   layers:
   - Default
   - TransparentFX

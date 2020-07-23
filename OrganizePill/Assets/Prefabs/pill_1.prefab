@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 114176596045718408}
   m_Layer: 0
   m_Name: pill_1
-  m_TagString: Untagged
+  m_TagString: pill1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,4 +123,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3accd5a41fce8d43b6c0f0c3d6524e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refPositionObject: {fileID: 0}

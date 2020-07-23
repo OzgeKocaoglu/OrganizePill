@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6589714387622052025}
   m_Layer: 0
   m_Name: pill_2
-  m_TagString: Untagged
+  m_TagString: pill2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

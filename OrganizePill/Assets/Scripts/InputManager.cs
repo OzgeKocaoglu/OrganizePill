@@ -5,31 +5,51 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
-    private Vector3 refPositionObject;
-    private Vector3 mOffSet;
-    private float mZCoord;
+    Vector3 distance;
+    float posX, posY;
 
-
-
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        mOffSet = gameObject.transform.position - GetMouseWorldPos();
+        distance = Camera.main.WorldToScreenPoint(transform.position);
+        posX = Input.mousePosition.x - distance.x;
+        posY = Input.mousePosition.y - distance.y;
     }
 
-    private Vector3 GetMouseWorldPos()
+    private void OnMouseDrag()
     {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = mZCoord;
+       
+        
+        if(this.gameObject.tag == "pill1")
+        {
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 1.6f);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+            transform.position = worldPos;
+            transform.localScale = new Vector3(2f, 2f, 2f);
+        }
+        else if(this.gameObject.tag == "pill2")
+        {
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 1.6f);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+            transform.position = worldPos;
+            transform.localScale = new Vector3(6f, 6f, 6f);
+        }
+        else if(this.gameObject.tag == "pill3")
+        {
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 1.6f);
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
+            transform.position = worldPos;
+            transform.localScale = new Vector3(10f, 10f, 10f);
+        }
 
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        
 
     }
 
-    void OnMouseDrag()
+    private void OnTriggerEnter(Collider other)
     {
-        refPositionObject = new Vector3(0f, 0f);
-        transform.position = new Vector3(GetMouseWorldPos().x + refPositionObject.x, GetMouseWorldPos().y + mOffSet.y, 0);
-        transform.localScale = new Vector3(3f, 3f, 3f);
+        if(other.tag == "bottle1" || other.tag == "bottle2" || other.tag == "bottle3")
+        {
+            Debug.Log("Ben: " + gameObject.name + "Şu Bottle'a dokunuyorum! ::: " + other.tag);
+        }
     }
 }

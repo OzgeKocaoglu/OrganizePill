@@ -11,10 +11,14 @@ GameObject:
   - component: {fileID: 4443317919085094760}
   - component: {fileID: 4443317919082194762}
   - component: {fileID: 4443317919083193738}
-  - component: {fileID: 1667509510720950679}
+  - component: {fileID: 782332979178976014}
+  - component: {fileID: 8481807695865690647}
+  - component: {fileID: 4487084176083034732}
+  - component: {fileID: 8192034116792636707}
+  - component: {fileID: 4392604891654475742}
   m_Layer: 0
   m_Name: pCylinder3
-  m_TagString: Untagged
+  m_TagString: bottle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1667509510720950679
+--- !u!65 &782332979178976014
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,11 +90,63 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443317919085394760}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.030449409, y: 0.007236317, z: 0.034394268}
-  m_Center: {x: -0.0004871618, y: -0.030509405, z: 0.001969099}
+  m_Size: {x: 0.0059728064, y: 0.06710612, z: 0.034379605}
+  m_Center: {x: -0.014203394, y: 0, z: 0}
+--- !u!65 &8481807695865690647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443317919085394760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0071832985, y: 0.06710612, z: 0.034379605}
+  m_Center: {x: 0.0135981515, y: 0, z: 0}
+--- !u!65 &4487084176083034732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443317919085394760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.034379598, y: 0.0070355423, z: 0.034379605}
+  m_Center: {x: 0, y: -0.030035285, z: 0}
+--- !u!65 &8192034116792636707
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443317919085394760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.034379598, y: 0.06710612, z: 0.0070293285}
+  m_Center: {x: 0, y: 0, z: -0.013675138}
+--- !u!65 &4392604891654475742
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443317919085394760}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.034379598, y: 0.06710612, z: 0.0050362404}
+  m_Center: {x: 0, y: 0, z: 0.014671682}
 --- !u!1 &4443317919085394762
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +158,7 @@ GameObject:
   - component: {fileID: 4443317919085094762}
   m_Layer: 0
   m_Name: Bottle_01
-  m_TagString: Untagged
+  m_TagString: bottle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

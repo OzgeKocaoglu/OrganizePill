@@ -88,9 +88,14 @@ GameObject:
   - component: {fileID: 4449918500941447500}
   - component: {fileID: 4449918500944314734}
   - component: {fileID: 4449918500943217582}
+  - component: {fileID: 7616303672682694122}
+  - component: {fileID: 8389259655405389340}
+  - component: {fileID: 3662609278810385254}
+  - component: {fileID: 3196907505382204555}
+  - component: {fileID: 4617004824161074600}
   m_Layer: 0
   m_Name: polySurface3
-  m_TagString: Untagged
+  m_TagString: bottle3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +159,71 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7616303672682694122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449918500941225324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00858739, y: 0.09140398, z: 0.06783195}
+  m_Center: {x: -0.029622301, y: 0, z: 0}
+--- !u!65 &8389259655405389340
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449918500941225324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.009663001, y: 0.09140398, z: 0.06783195}
+  m_Center: {x: 0.029084481, y: 0, z: 0}
+--- !u!65 &3662609278810385254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449918500941225324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06783195, y: 0.009343731, z: 0.06783195}
+  m_Center: {x: 0, y: -0.041030135, z: 0}
+--- !u!65 &3196907505382204555
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449918500941225324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06783195, y: 0.09140398, z: 0.009402822}
+  m_Center: {x: 0, y: 0, z: -0.029214561}
+--- !u!65 &4617004824161074600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4449918500941225324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06783195, y: 0.09140398, z: 0.0075604916}
+  m_Center: {x: 0, y: 0, z: 0.030135747}
 --- !u!1 &4449918500941225326
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +235,7 @@ GameObject:
   - component: {fileID: 4449918500941447502}
   m_Layer: 0
   m_Name: Bottle_03
-  m_TagString: Untagged
+  m_TagString: bottle3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
