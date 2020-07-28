@@ -2,32 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
+using System.Threading.Tasks;
 
-public class InputManager : MonoBehaviour
+
+public class InputManager : MonoBehaviour, IEventSystemHandler
 {
     Vector3 distance;
     Rigidbody _myRigidboy;
     float posX, posY;
     float waitforsecond = 2.0f;
-    private int PL1 = 0, PL2 = 0, PL3 = 0; //pill1 bottle count, pill2 bottle count, pill3 bottle count
-
+   
     private void Start()
     {
         _myRigidboy = GetComponent<Rigidbody>();
     }
-
     private void OnMouseDown()
     {
         distance = Camera.main.WorldToScreenPoint(transform.position);
         posX = Input.mousePosition.x - distance.x;
         posY = Input.mousePosition.y - distance.y;
     }
-
     private void OnMouseDrag()
     {
         _myRigidboy.constraints = RigidbodyConstraints.FreezeRotation;
 
-        
         if(this.gameObject.tag == "pill1")
         {
             Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, 1.7f);
@@ -49,11 +48,7 @@ public class InputManager : MonoBehaviour
             transform.position = worldPos;
             transform.localScale = new Vector3(10f, 10f, 10f);
         }
-
-        
-
     }
-
     private void OnTriggerEnter(Collider other)
     {
         #region Dead Part
@@ -66,114 +61,13 @@ public class InputManager : MonoBehaviour
         }
         #endregion
 
-        #region Point
-
-        if (other.tag == "bottle1")
-        {
-            if (this.gameObject.tag == "pill1")
-            {
-
-                AddPoint(1);
-                Debug.Log("You have got a point! FOR BOTTLE 1! YOUR POINT IS:: " + PL1);
-            }
-            else if(this.gameObject.tag =="pill2")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-            else if(this.gameObject.tag == "pill3")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-        }
-
-        if(other.tag == "bottle2")
-        {
-            if (this.gameObject.tag == "pill2")
-            {
-
-                AddPoint(2);
-                Debug.Log("You have got a point! FOR BOTTLE 2! YOUR POINT IS:: " + PL2);
-            }
-            else if (this.gameObject.tag == "pill1")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-            else if (this.gameObject.tag == "pill3")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-        }
-
-        if(other.tag == "bottle3")
-        {
-            if (this.gameObject.tag == "pill3")
-            {
-                AddPoint(3);
-                Debug.Log("You have got a point! FOR BOTTLE 3! YOUR POINT IS: " + PL3);
-            }
-            else if (this.gameObject.tag == "pill2")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-            else if (this.gameObject.tag == "pill3")
-            {
-                //Create new pill for this
-                Debug.Log("WRONG PILL:: " + this.gameObject.tag);
-                //TO DO:: ADD CROSS SIGN
-            }
-        }
-
-        #endregion
-
     }
-
     IEnumerator ReSpawnObject()
     {
         Debug.Log("Waiting for respawn");
         yield return new WaitForSeconds(waitforsecond);
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "bottle1")
-        {
-            if(this.gameObject.tag == "pill1")
-            {
-                PL1--;
-                Debug.Log("You lose your point");
-            }
-        }
-        if(other.tag == "bottle2")
-        {
-            if(this.gameObject.tag == "pill2")
-            {
-                PL2--;
-                Debug.Log("You lose your point");
-            }
-        }
-
-        if(other.tag == "bottle3")
-        {
-            if(this.gameObject.tag == "pill3")
-            {
-                PL3--;
-                Debug.Log("You lose your point");
-            }
-        }
-    }
-
-
-    void ReTransformPillObjects(string pillTag)
+   public void ReTransformPillObjects(string pillTag)
     {
         if(pillTag == "pill1")
         {
@@ -201,20 +95,5 @@ public class InputManager : MonoBehaviour
 
     }
 
-    public void AddPoint(int pillScoreName)
-    {
-        if(pillScoreName == 1)
-        {
-            PL1++;
-        }
-        else if(pillScoreName == 2)
-        {
-            PL2++;
-        }
-        else if(pillScoreName == 3)
-        {
-            PL3++;
-        }
-    }
 
 }
