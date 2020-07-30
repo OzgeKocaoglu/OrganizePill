@@ -7,12 +7,11 @@ using UnityEditor.Animations;
 public class ScoreController : MonoBehaviour
 {
     private int PL1 = 0, PL2 = 0, PL3 = 0; //pill1 bottle count, pill2 bottle count, pill3 bottle count
-
-    UnityEvent onPillOneChange, onPillTwoChange, onPillThreeChange; //adding point
-    UnityEvent onBottleOneChange, onBottleTwoChange, onBottleThreeChange; //falling pill from bottle
     bool BottleOneLock = false, BottleTwoLock = false, BottleThreeLock = false;
     AnimationController _controller;
-
+    UnityEvent onPillOneChange, onPillTwoChange, onPillThreeChange; //adding point
+    UnityEvent onBottleOneChange, onBottleTwoChange, onBottleThreeChange; //falling pill from bottle
+    UnityEvent onWrongPill;
     private void Start()
     {
         IniliazeEvents();
@@ -44,12 +43,17 @@ public class ScoreController : MonoBehaviour
         {
             onBottleThreeChange = new UnityEvent();
         }
+        if(onWrongPill == null)
+        {
+            onWrongPill = new UnityEvent();
+        }
         onPillOneChange.AddListener(AddPillOne);
         onPillTwoChange.AddListener(AddPillTwo);
         onPillThreeChange.AddListener(AddPillThree);
         onBottleOneChange.AddListener(MinusPillOne);
         onBottleTwoChange.AddListener(MinusPillTwo);
         onBottleThreeChange.AddListener(MinusPillThree);
+        onWrongPill.AddListener(WrongPill);
 
     }
     #region EVENT FUNCS
@@ -59,6 +63,8 @@ public class ScoreController : MonoBehaviour
         {
             PL1 += 1;
             Debug.Log("Puan eklendi. Yeni Puan:: " + PL1);
+            _controller.playCheck();
+            
         }
         else
         {
@@ -75,11 +81,13 @@ public class ScoreController : MonoBehaviour
         {
             PL2 += 1;
             Debug.Log("Puan eklendi. Yeni puan:: " + PL2);
+            _controller.playCheck();
         }
         else
         {
             Debug.Log("You've finish this bottle! Congrats!");
             BottleTwoLock = true;
+            _controller.playCoverAnimation();
             //Lock to bottle animation
         }
 
@@ -90,11 +98,13 @@ public class ScoreController : MonoBehaviour
         {
             PL3 += 1;
             Debug.Log("Puan eklendi. Yeni puan:: " + PL3);
+            _controller.playCheck();
         }
         else
         {
             Debug.Log("You've finish this bottle! Congrats!");
             BottleThreeLock = true;
+            _controller.playCoverAnimation();
             //Lock to bottle animation
         }
 
@@ -124,10 +134,16 @@ public class ScoreController : MonoBehaviour
             Debug.Log("Puan eksildi. Yeni puan:: " + PL3);
         }
     }
+    void WrongPill()
+    {
+        _controller.playCross();
+        //Create pill
+        Debug.Log("WRONG PILL ANIMATION!");
+    }
     #endregion
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "pill1")
+        if (other.tag == "pill1")
         {
             if (this.gameObject.tag == "bottle1")
             {
@@ -138,12 +154,18 @@ public class ScoreController : MonoBehaviour
             else if (this.gameObject.tag == "bottle2")
             {
                 //Create new pill for this
+                if(!BottleTwoLock)
+                   onWrongPill.Invoke();
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
             else if (this.gameObject.tag == "bottle3")
             {
                 //Create new pill for this
+                if(!BottleThreeLock)
+                    onWrongPill.Invoke();
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
@@ -158,12 +180,18 @@ public class ScoreController : MonoBehaviour
             else if (this.gameObject.tag == "bottle1")
             {
                 //Create new pill for this
+                if(!BottleOneLock)
+                  onWrongPill.Invoke();
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
             else if (this.gameObject.tag == "bottle3")
             {
                 //Create new pill for this
+                if(!BottleThreeLock)
+                  onWrongPill.Invoke();
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
@@ -178,12 +206,20 @@ public class ScoreController : MonoBehaviour
             else if (this.gameObject.tag == "bottle2")
             {
                 //Create new pill for this
+                if (!BottleTwoLock)
+                {
+                    onWrongPill.Invoke();
+                }
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
-            else if (this.gameObject.tag == "bottle3")
+            else if (this.gameObject.tag == "bottle1")
             {
                 //Create new pill for this
+                if(!BottleOneLock)
+                   onWrongPill.Invoke();
+                GameManager.Instance.RespawnPill(other.tag);
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
@@ -219,4 +255,5 @@ public class ScoreController : MonoBehaviour
             }
         }
     }
+
 }

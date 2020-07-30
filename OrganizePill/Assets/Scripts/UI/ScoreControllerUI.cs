@@ -8,7 +8,5 @@ using UnityEngine.UI;
 
     class ScoreControllerUI : MonoBehaviour
     { 
-       
-
     }
 

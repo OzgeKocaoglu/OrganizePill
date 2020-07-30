@@ -3,21 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public delegate void Pills(GameObject pill);
-
 public class GameManager : MonoBehaviour
 {
-
-[SerializeField]
-   private Transform[] _pill;
-   public Transform _spawnPoint;
-
+    [SerializeField]
+    private Transform[] _pill;
+    public Transform _spawnPoint;
+    public static GameManager Instance { get; private set; }
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
    void Start()
     {
         CreatePill();
-    } 
-
+    }
+    
    private void CreatePill(){
 
        for (int i = 0; i < _pill.Length; i++)
@@ -41,5 +50,15 @@ public class GameManager : MonoBehaviour
         }
    }
 
+    public void RespawnPill(string pillTag)
+    {
+        for(int i =0; i< _pill.Length; i++)
+        {
+            if(pillTag == _pill[i].tag)
+            {
+                Instantiate(_pill[i], _spawnPoint.transform.position, Quaternion.identity);
+            }
+        }
+    }
 
 }

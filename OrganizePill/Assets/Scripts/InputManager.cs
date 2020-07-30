@@ -95,5 +95,4 @@ public class InputManager : MonoBehaviour, IEventSystemHandler
 
     }
 
-
 }
