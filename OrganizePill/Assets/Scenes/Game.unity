@@ -522,10 +522,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 289985309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efd652ce142d44193679c53a542b43, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f4ba7c14aabab4bbf66d6eeb146f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 1916699311}
 --- !u!1 &310734119
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,10 +936,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 588941647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efd652ce142d44193679c53a542b43, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f4ba7c14aabab4bbf66d6eeb146f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
 --- !u!1 &610469816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,10 +1490,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1042006273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efd652ce142d44193679c53a542b43, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f4ba7c14aabab4bbf66d6eeb146f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 1916699311}
 --- !u!1 &1088984167 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4970356191010213136, guid: 265ffa79a03b83d4a9603cadb73e5459,
@@ -1632,13 +1629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d552a8896451e364d9ac3e0365900b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 0}
 --- !u!1 &1314605301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2328,6 +2318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916699312}
   - component: {fileID: 1916699311}
+  - component: {fileID: 1916699313}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2352,6 +2343,7 @@ MonoBehaviour:
   - {fileID: 1755170825482312359, guid: afe6847d710cb36478053bdfc5baabf2, type: 3}
   - {fileID: 5061037823382798534, guid: 482eb7044a9ca6d4c8b9d5f2d7860f8b, type: 3}
   _spawnPoint: {fileID: 67440756}
+  IsFirstStepFinish: 0
 --- !u!4 &1916699312
 Transform:
   m_ObjectHideFlags: 0
@@ -2366,6 +2358,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1916699313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916699310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62efd652ce142d44193679c53a542b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottles:
+  - {fileID: 289985320}
+  - {fileID: 1042006283}
+  - {fileID: 588941657}
 --- !u!1001 &2066065673
 PrefabInstance:
   m_ObjectHideFlags: 0

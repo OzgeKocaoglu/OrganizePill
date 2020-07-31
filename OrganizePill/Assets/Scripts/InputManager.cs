@@ -67,7 +67,7 @@ public class InputManager : MonoBehaviour, IEventSystemHandler
         Debug.Log("Waiting for respawn");
         yield return new WaitForSeconds(waitforsecond);
     }
-   public void ReTransformPillObjects(string pillTag)
+    public void ReTransformPillObjects(string pillTag)
     {
         if(pillTag == "pill1")
         {

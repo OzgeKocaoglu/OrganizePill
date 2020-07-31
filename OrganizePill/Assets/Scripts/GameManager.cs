@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     private Transform[] _pill;
     public Transform _spawnPoint;
     public static GameManager Instance { get; private set; }
-    private void Awake()
+    public bool IsFirstStepFinish = false;
+
+   private void Awake()
     {
         if(Instance == null)
         {
@@ -21,12 +23,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
    void Start()
     {
         CreatePill();
     }
-    
    private void CreatePill(){
 
        for (int i = 0; i < _pill.Length; i++)
@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour
             } 
         }
    }
-
-    public void RespawnPill(string pillTag)
+   public void RespawnPill(string pillTag)
     {
         for(int i =0; i< _pill.Length; i++)
         {
