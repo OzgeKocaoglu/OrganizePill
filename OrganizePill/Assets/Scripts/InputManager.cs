@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 public class InputManager : MonoBehaviour, IEventSystemHandler
 {
+    //Variables
     Vector3 distance;
     Rigidbody _myRigidboy;
     float posX, posY;
     float waitforsecond = 2.0f;
    
+    //Unity Functions
     private void Start()
     {
         _myRigidboy = GetComponent<Rigidbody>();
@@ -62,6 +64,8 @@ public class InputManager : MonoBehaviour, IEventSystemHandler
         #endregion
 
     }
+
+    //Functions
     IEnumerator ReSpawnObject()
     {
         Debug.Log("Waiting for respawn");

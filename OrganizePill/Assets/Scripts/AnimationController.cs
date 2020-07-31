@@ -5,17 +5,22 @@ using UnityEngine.Events;
 
 public class AnimationController : MonoBehaviour
 {
+    //Variables
     [SerializeField]
     private GameObject _bottleCover;
     private Animator _controller;
+
+    //Events
     UnityEvent onCheck, onFalse;
 
-
+    //Unity Functions
     private void Start()
     {
         IniliazeEvents();
         _controller = _bottleCover.GetComponent<Animator>();
     }
+
+    //Functions
     public void IniliazeEvents()
     {
         if (onCheck == null)

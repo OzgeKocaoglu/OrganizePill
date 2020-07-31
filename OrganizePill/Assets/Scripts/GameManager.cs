@@ -5,12 +5,16 @@ using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
+    //Singleton
+    public static GameManager Instance { get; private set; }
+
+    //Variables
     [SerializeField]
     private Transform[] _pill;
     public Transform _spawnPoint;
-    public static GameManager Instance { get; private set; }
     public bool IsFirstStepFinish = false;
 
+    //Unity Functions
    private void Awake()
     {
         if(Instance == null)
@@ -27,6 +31,12 @@ public class GameManager : MonoBehaviour
     {
         CreatePill();
     }
+   void Update()
+   {
+        
+   }
+
+    //Functions
    private void CreatePill(){
 
        for (int i = 0; i < _pill.Length; i++)

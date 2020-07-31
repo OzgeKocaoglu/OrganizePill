@@ -14,6 +14,7 @@ public class Bottle : MonoBehaviour
     UnityEvent onBottleChange;
 
     AnimationController _controller;
+
     //Props
     public int BottlePill
     {
@@ -44,13 +45,15 @@ public class Bottle : MonoBehaviour
             }
         }
     }
-    
-    //Functions
+
+   //Unity Functions
     private void Start()
     {
         IniliazeEvents();
         _controller = this.gameObject.GetComponentInParent<AnimationController>();
     }
+
+    //Functions
     void IniliazeEvents()
     {
         if (onPillChange == null)
