@@ -7,13 +7,15 @@ public class Bottle : MonoBehaviour
 {
     //Variables
     private int bottlePillCount;
-    private bool IsLock;
+    private bool IsLock = false;
+    private List<GameObject> pillsAdded;
     //Events
     UnityEvent onPillChange;
     UnityEvent onWrongPill;
     UnityEvent onBottleChange;
+    UnityEvent onLockChange;
 
-    AnimationController _controller;
+    public AnimationController _controller;
 
     //Props
     public int BottlePill
@@ -42,6 +44,8 @@ public class Bottle : MonoBehaviour
             if(value != null)
             {
                 IsLock = value;
+                Debug.Log("Bottlelock is change");
+                onLockChange.Invoke();
             }
         }
     }
@@ -51,6 +55,7 @@ public class Bottle : MonoBehaviour
     {
         IniliazeEvents();
         _controller = this.gameObject.GetComponentInParent<AnimationController>();
+        pillsAdded = new List<GameObject>();
     }
 
     //Functions
@@ -68,9 +73,14 @@ public class Bottle : MonoBehaviour
         {
             onBottleChange = new UnityEvent();
         }
+        if(onLockChange == null)
+        {
+            onLockChange = new UnityEvent();
+        }
         onPillChange.AddListener(AddPill);
         onBottleChange.AddListener(MinusPill);
         onWrongPill.AddListener(WrongPill);
+        onLockChange.AddListener(GameManager.Instance.OnAllLock);
     }
     #region EVENT FUNCS
     void AddPill()
@@ -86,8 +96,10 @@ public class Bottle : MonoBehaviour
         {
             Debug.Log("You've finish this bottle! Congrats!");
             this.BootleLock = true;
+            Debug.Log("Bottle locked:" + this.BootleLock);
             _controller.playCoverAnimation();
             //Lock to bottle animation
+            GameManager.Instance.NextLevel();
         }
 
     }
@@ -112,9 +124,15 @@ public class Bottle : MonoBehaviour
         {
             if (this.gameObject.tag == "bottle1")
             {
-                onPillChange.Invoke();
-                //AddPoint(1);
-                Debug.Log("You have got a point! FOR BOTTLE 1! YOUR POINT IS:: " + this.BottlePill);
+                if (!this.BootleLock)
+                {
+                    onPillChange.Invoke();
+                    //AddPoint(1);
+                    Debug.Log("You have got a point! FOR BOTTLE 1! YOUR POINT IS:: " + this.BottlePill);
+                    other.tag = "addedPill";
+                    pillsAdded.Add(other.gameObject);
+                }
+               
             }
             else if (this.gameObject.tag == "bottle2" || this.gameObject.tag == "bottle3")
             {
@@ -132,8 +150,14 @@ public class Bottle : MonoBehaviour
         {
             if (this.gameObject.tag == "bottle2")
             {
-                onPillChange.Invoke();
-                Debug.Log("You have got a point! FOR BOTTLE 2! YOUR POINT IS:: " + this.BottlePill);
+                if (!this.BootleLock)
+                {
+                    onPillChange.Invoke();
+                    Debug.Log("You have got a point! FOR BOTTLE 2! YOUR POINT IS:: " + this.BottlePill);
+                    pillsAdded.Add(other.gameObject);
+                    other.tag = "addedPill";
+                }
+                
             }
             else if (this.gameObject.tag == "bottle1" || this.gameObject.tag == "bottle3")
             {
@@ -151,8 +175,14 @@ public class Bottle : MonoBehaviour
         {
             if (this.gameObject.tag == "bottle3")
             {
-                onPillChange.Invoke();
-                Debug.Log("You have got a point! FOR BOTTLE 3! YOUR POINT IS: " + this.BottlePill);
+                if (!this.BootleLock)
+                {
+                    onPillChange.Invoke();
+                    Debug.Log("You have got a point! FOR BOTTLE 3! YOUR POINT IS: " + this.BottlePill);
+                    pillsAdded.Add(other.gameObject);
+                    other.tag = "addedPill";
+                }
+             
             }
             else if (this.gameObject.tag == "bottle2" || this.gameObject.tag == "bottle1")
             {
@@ -169,34 +199,59 @@ public class Bottle : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "pill1")
+        if (other.gameObject.tag == "addedPill")
         {
             if (this.gameObject.tag == "bottle1")
             {
-                onBottleChange.Invoke();
-                Debug.Log("You lose your point for bottle 1. Your current bottle point:: " + this.BottlePill);
+                if (!this.BootleLock)
+                {
+                    onBottleChange.Invoke();
+                    Debug.Log("You lose your point for bottle 1. Your current bottle point:: " + this.BottlePill);
+                    pillsAdded.Remove(other.gameObject);
+                    other.tag = "pill1";
+                }
+                
 
             }
         }
-        else if (other.gameObject.tag == "pill2")
+        else if (other.gameObject.tag == "addedPill")
         {
             if (this.gameObject.tag == "bottle2")
             {
-                onBottleChange.Invoke();
-                Debug.Log("You lose your point for bottle 2. Your current bottle point:: " + this.BottlePill);
+                if (!this.BootleLock)
+                {
+                    onBottleChange.Invoke();
+                    Debug.Log("You lose your point for bottle 2. Your current bottle point:: " + this.BottlePill);
+                    pillsAdded.Remove(other.gameObject);
+                    other.tag = "pill2";
+                }
+                
 
             }
         }
-        else if (other.gameObject.tag == "pill3")
+        else if (other.gameObject.tag == "addedPill")
         {
             if (this.gameObject.tag == "bottle3")
             {
-                onBottleChange.Invoke();
-                Debug.Log("You lose your point for bottle 3. Your current bottle point:: " + this.BottlePill);
-
+                if (!this.BootleLock)
+                {
+                    onBottleChange.Invoke();
+                    Debug.Log("You lose your point for bottle 3. Your current bottle point:: " + this.BottlePill);
+                    pillsAdded.Remove(other.gameObject);
+                    other.tag = "pill3";
+                }
+                
             }
         }
     }
 
+    public void TranslatePillsToLevel()
+    {
+        for(int i = 0; i< pillsAdded.Count; i++)
+        {
+            pillsAdded[i].gameObject.transform.SetParent(this.gameObject.transform);
+            pillsAdded[i].gameObject.transform.position = pillsAdded[i].gameObject.transform.parent.position;
+        }
+    }
 
 }

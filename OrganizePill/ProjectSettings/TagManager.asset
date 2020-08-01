@@ -11,6 +11,7 @@ TagManager:
   - bottle2
   - bottle3
   - Dead
+  - addedPill
   layers:
   - Default
   - TransparentFX

@@ -8,15 +8,22 @@ public class ScoreController : MonoBehaviour
 {
     //Variables
     private int score;
-    public List<Bottle> bottles;
+
 
 
     //Props
 
     private void Start()
     {
-        
+       
     }
+
+     public void Update()
+     {
+        
+     }
+
+   
 
 
 }

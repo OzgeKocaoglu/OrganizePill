@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform[] _pill;
     public Transform _spawnPoint;
+    public List<Bottle> bottles;
+    private int lockCount = 0;
     public bool IsFirstStepFinish = false;
+    
+    //probs
+    public int LockCount
+    {
+        get { return lockCount; }
+        set
+        {
+            if(value != 0)
+            {
+                lockCount = value;
+            }
+        }
+    }
 
     //Unity Functions
    private void Awake()
@@ -31,10 +47,6 @@ public class GameManager : MonoBehaviour
     {
         CreatePill();
     }
-   void Update()
-   {
-        
-   }
 
     //Functions
    private void CreatePill(){
@@ -69,5 +81,30 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void OnAllLock()
+    {
+       if (bottles[0].BootleLock && bottles[1].BootleLock && bottles[2].BootleLock)
+       {
+            Debug.Log("ALL BOTTLES LOCK");
+            IsFirstStepFinish = true;
+            Debug.Log("Is the first step finish:: " + IsFirstStepFinish);
+        }
+    }
 
+
+
+    public void NextLevel()
+    {
+        if (IsFirstStepFinish)
+        {
+            bottles[2]._controller.playFinish();
+            bottles[1]._controller.playFinish();
+            bottles[0]._controller.playFinish();
+            bottles[0].TranslatePillsToLevel();
+            bottles[1].TranslatePillsToLevel();
+            bottles[2].TranslatePillsToLevel();
+
+        }
+
+    }
 }
