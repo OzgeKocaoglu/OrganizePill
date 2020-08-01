@@ -12,6 +12,9 @@ TagManager:
   - bottle3
   - Dead
   - addedPill
+  - shelve01
+  - shelve02
+  - shelve03
   layers:
   - Default
   - TransparentFX

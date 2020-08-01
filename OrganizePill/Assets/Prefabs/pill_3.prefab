@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5061037823385665766}
   - component: {fileID: 5061037823384699430}
   - component: {fileID: 4936438699809465412}
-  - component: {fileID: 5061037822618935497}
   - component: {fileID: 5350547479114109264}
+  - component: {fileID: 7397561032366948598}
   m_Layer: 0
-  m_Name: pill_3 1
+  m_Name: pill_3
   m_TagString: pill3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,23 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3accd5a41fce8d43b6c0f0c3d6524e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
---- !u!54 &5061037822618935497
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5061037823382772966}
-  serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &5350547479114109264
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,3 +105,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0059633586, y: 0.0014068811, z: 0.0048825517}
   m_Center: {x: 0.00010467508, y: -0.00010266668, z: -0.00012805387}
+--- !u!54 &7397561032366948598
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061037823382772966}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

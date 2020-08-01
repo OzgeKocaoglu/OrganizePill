@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 5851328069124005744}
   - component: {fileID: 4834377251135046726}
   - component: {fileID: 5554936743004273977}
+  - component: {fileID: 1287566852320497897}
   m_Layer: 0
   m_Name: pCylinder6
   m_TagString: bottle2
@@ -203,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.009708464, y: 0.07703937, z: 0.040148795}
-  m_Center: {x: -0.015220158, y: 0.0022156388, z: 0}
+  m_Size: {x: 0, y: 0.06408159, z: 0.040148795}
+  m_Center: {x: -0.020074403, y: -0.004263258, z: 0}
 --- !u!65 &4468192879137254203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -216,8 +217,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010356255, y: 0.07780901, z: 0.040148795}
-  m_Center: {x: 0.014896262, y: 0.0026004612, z: 0}
+  m_Size: {x: 0, y: 0.066393755, z: 0.040148795}
+  m_Center: {x: 0.021457464, y: -0.0031071783, z: 0}
 --- !u!65 &5090155457152775591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -229,8 +230,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.040148783, y: 0.07734574, z: 0.010258049}
-  m_Center: {x: 0, y: 0.0023688227, z: -0.014945373}
+  m_Size: {x: 0.041107345, y: 0.06636826, z: 0}
+  m_Center: {x: 0.00047928095, y: -0.0031199455, z: -0.020788077}
 --- !u!65 &5851328069124005744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -242,8 +243,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.040148783, y: 0.07810823, z: 0.010609735}
-  m_Center: {x: 0, y: 0.002750069, z: 0.01476953}
+  m_Size: {x: 0.040148783, y: 0.06545287, z: 0}
+  m_Center: {x: 0, y: -0.0035776272, z: 0.020074401}
 --- !u!65 &4834377251135046726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,8 +256,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.040148783, y: 0.011089385, z: 0.040148795}
-  m_Center: {x: 0, y: -0.030759353, z: 0}
+  m_Size: {x: 0.040148783, y: 0.0041259676, z: 0.040148795}
+  m_Center: {x: 0, y: -0.03424106, z: 0}
 --- !u!65 &5554936743004273977
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -268,5 +269,19 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.040148783, y: 0.061378002, z: 0.029453909}
-  m_Center: {x: 0, y: 0.0034273162, z: -0.00092390476}
+  m_Size: {x: 0.040148783, y: 0.061483026, z: 0.035437953}
+  m_Center: {x: 0, y: -0.0018768668, z: -0.0005535573}
+--- !u!64 &1287566852320497897
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970356191010213140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300002, guid: 332704b618ece4d4897019c1be869539, type: 3}

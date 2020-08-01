@@ -17,6 +17,7 @@ public class Bottle : MonoBehaviour
 
     public AnimationController _controller;
 
+
     //Props
     public int BottlePill
     {
@@ -201,25 +202,25 @@ public class Bottle : MonoBehaviour
     {
         if (other.gameObject.tag == "addedPill")
         {
+            Debug.Log(this.gameObject.tag);
             if (this.gameObject.tag == "bottle1")
             {
                 if (!this.BootleLock)
                 {
+                    Debug.Log(other.tag);
                     onBottleChange.Invoke();
                     Debug.Log("You lose your point for bottle 1. Your current bottle point:: " + this.BottlePill);
                     pillsAdded.Remove(other.gameObject);
                     other.tag = "pill1";
                 }
-                
 
             }
-        }
-        else if (other.gameObject.tag == "addedPill")
-        {
-            if (this.gameObject.tag == "bottle2")
+            else if (this.gameObject.tag == "bottle2")
             {
+                Debug.Log(gameObject.name);
                 if (!this.BootleLock)
                 {
+                    Debug.Log(other.tag);
                     onBottleChange.Invoke();
                     Debug.Log("You lose your point for bottle 2. Your current bottle point:: " + this.BottlePill);
                     pillsAdded.Remove(other.gameObject);
@@ -228,10 +229,7 @@ public class Bottle : MonoBehaviour
                 
 
             }
-        }
-        else if (other.gameObject.tag == "addedPill")
-        {
-            if (this.gameObject.tag == "bottle3")
+            else if (this.gameObject.tag == "bottle3")
             {
                 if (!this.BootleLock)
                 {
