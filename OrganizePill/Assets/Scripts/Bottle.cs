@@ -9,6 +9,8 @@ public class Bottle : MonoBehaviour
     private int bottlePillCount;
     private bool IsLock = false;
     private List<GameObject> pillsAdded;
+    [SerializeField]
+    private GameObject _bottleCover;
     //Events
     UnityEvent onPillChange;
     UnityEvent onWrongPill;
@@ -243,13 +245,17 @@ public class Bottle : MonoBehaviour
         }
     }
 
-    public void TranslatePillsToLevel()
+    public void MakeChildren()
     {
         for(int i = 0; i< pillsAdded.Count; i++)
         {
             pillsAdded[i].gameObject.transform.SetParent(this.gameObject.transform);
             pillsAdded[i].gameObject.transform.position = pillsAdded[i].gameObject.transform.parent.position;
+            Rigidbody _pillRigidboy = pillsAdded[i].gameObject.GetComponent<Rigidbody>();
+            _pillRigidboy.constraints = RigidbodyConstraints.FreezePosition;
+            _pillRigidboy.constraints = RigidbodyConstraints.FreezeRotation;
         }
+        _bottleCover.gameObject.transform.SetParent(this.gameObject.transform);
     }
 
 }

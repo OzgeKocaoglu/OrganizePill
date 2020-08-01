@@ -7,7 +7,7 @@ public class BottleInputManager : MonoBehaviour, IEventSystemHandler
 {
 
     GameObject getTarget;
-    bool isMouseDragging;
+     bool isMouseDragging;
     Vector3 offsetValue;
     Vector3 positionOfScreen;
 
@@ -20,12 +20,16 @@ public class BottleInputManager : MonoBehaviour, IEventSystemHandler
         {
             RaycastHit hitInfo;
             getTarget = ReturnClickedObject(out hitInfo);
-            if (getTarget != null)
+            if (getTarget != null && GameManager.Instance.IsFirstStepFinish)
             {
-                isMouseDragging = true;
-                //Converting world position to screen position.
-                positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
-                offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
+                if(getTarget.gameObject.tag == "bottle1" || getTarget.gameObject.tag == "bottle2" || getTarget.gameObject.tag == "bottle3")
+                {
+                    isMouseDragging = true;
+                    //Converting world position to screen position.
+                    positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
+                    offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
+                }
+               ;
             }
         }
 
@@ -39,13 +43,18 @@ public class BottleInputManager : MonoBehaviour, IEventSystemHandler
         if (isMouseDragging)
         {
             //tracking mouse position.
-            Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z);
+            Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 3.4f);
 
             //converting screen position to world position with offset changes.
             Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offsetValue;
 
             //It will update target gameobject's current postion.
             getTarget.transform.position = currentPosition;
+            if(getTarget.gameObject.tag == "bottle3")
+            {
+                getTarget.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+            }
+       
         }
 
 

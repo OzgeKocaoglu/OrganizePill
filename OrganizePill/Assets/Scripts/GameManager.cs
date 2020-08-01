@@ -100,9 +100,9 @@ public class GameManager : MonoBehaviour
             bottles[2]._controller.playFinish();
             bottles[1]._controller.playFinish();
             bottles[0]._controller.playFinish();
-            bottles[0].TranslatePillsToLevel();
-            bottles[1].TranslatePillsToLevel();
-            bottles[2].TranslatePillsToLevel();
+            bottles[0].MakeChildren();
+            bottles[1].MakeChildren();
+            bottles[2].MakeChildren();
 
         }
 
