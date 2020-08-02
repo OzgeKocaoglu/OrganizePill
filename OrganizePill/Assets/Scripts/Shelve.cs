@@ -9,7 +9,6 @@ public class Shelve : MonoBehaviour
     private bool _onCorrectBottle = false;
     UnityEvent OnBottle;
 
-
     //probs
     public bool OnCorrectBottle
     {
@@ -33,7 +32,6 @@ public class Shelve : MonoBehaviour
     {
         IniliazeEvents();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (this.gameObject.tag == "shelve01")
@@ -90,6 +88,7 @@ public class Shelve : MonoBehaviour
         }
     }
 
+    //Functions
     void IniliazeEvents()
     {
         if (OnBottle == null)

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerPrefs : MonoBehaviour
 {
+    //variables
     private static int _coin = 10; //default settings
-   
+
+    //probs
     public static int Coin
     {
         get

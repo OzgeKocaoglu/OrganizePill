@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     //First Level Finish Method
     public void OnAllLock()
     {
@@ -89,7 +88,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Is the first step finish:: " + IsFirstStepFinish);
         }
     }
-
     //Second Level Finish Method
     public void OnAllBottleAdd()
     {
@@ -101,7 +99,6 @@ public class GameManager : MonoBehaviour
             NextLevel();
         }
     }
-
     //Change Level Method
     public void NextLevel()
     {

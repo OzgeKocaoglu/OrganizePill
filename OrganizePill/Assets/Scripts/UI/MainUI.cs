@@ -7,52 +7,54 @@ using System.Collections.Generic;
 
 public class MainUI : MonoBehaviour
 {
-    //Variables
+    //Editor Variables
     [Header ("UI References")]
     [SerializeField] private Text _playerCoinAmount;
     [SerializeField] private Text _playerGainCoinAmount;
     [SerializeField] GameObject animatedCoinPrefab;
+    [SerializeField] Canvas targetCanvas;
     [SerializeField] Transform target;
 
     [Space]
     [Header("Available coins: ")]
     [SerializeField] int maxCoins;
-    Queue<GameObject> coinsQuene = new Queue<GameObject>();
+    Queue<RectTransform> coinsQuene = new Queue<RectTransform>();
 
     [Space]
     [Header("Animation settings")]
     [SerializeField] [Range(0.5f, 0.9f)] float minAnimationDuration;
     [SerializeField] [Range(0.9f, 2f)] float maxAnimationDuration;
-
+    public GameObject _victoryPanel;
     RectTransform targetPosition;
 
-
+    //Unity Funcs
     private void Awake()
     {
 
         targetPosition = target.GetComponent<RectTransform>();
         PrepareCoins();
     }
+    private void OnEnable()
+    {
+        _playerCoinAmount.text = PlayerPrefs.Coin.ToString();
+    }
 
+    //Functions
     void PrepareCoins()
     {
-        GameObject coin;
+        RectTransform coin;
         for (int i=0; i< maxCoins; i++)
         {
-            coin = Instantiate(animatedCoinPrefab);
+            coin = Instantiate(animatedCoinPrefab).GetComponent<RectTransform>();
             coin.transform.parent = transform;
-            coin.SetActive(false);
+            coin.gameObject.SetActive(false);
             coinsQuene.Enqueue(coin);
         }
     }
-
     public void OnCoinAdd()
     {
         OnAnimate(animatedCoinPrefab.gameObject.GetComponent<RectTransform>(), PlayerPrefs.Coin);
     }
-
-    public GameObject _victoryPanel;
-
     public void OnAnimate(RectTransform collectedCoinPosition, int amount)
     {
         for(int i=0; i<amount; i++)
@@ -60,15 +62,15 @@ public class MainUI : MonoBehaviour
             Debug.Log("Animated");
             if (coinsQuene.Count > 0)
             {
-                GameObject coin = coinsQuene.Dequeue();
+                RectTransform coin = coinsQuene.Dequeue();
                 float duration = Random.Range(minAnimationDuration, maxAnimationDuration);
-                RectTransform _clone = 
-                coin.transform.position = collectedCoinPosition;
+
+
                 coin.transform.DOMove(Vector3.zero, duration)
                     .SetEase(Ease.InOutBack)
                     .OnComplete(() =>
                     {
-                        coin.SetActive(false);
+                        coin.gameObject.SetActive(false);
                         coinsQuene.Enqueue(coin);
                         PlayerPrefs.Coin++;
                     });
@@ -76,9 +78,4 @@ public class MainUI : MonoBehaviour
         }
     }
 
-    //Unity Funcs
-    private void OnEnable()
-    {
-        _playerCoinAmount.text = PlayerPrefs.Coin.ToString();
-    }
 }
