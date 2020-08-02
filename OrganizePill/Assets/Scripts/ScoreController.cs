@@ -7,10 +7,10 @@ using UnityEditor.Animations;
 public class ScoreController : MonoBehaviour
 {
     //Variables
-    private static int score;
+    private int score;
 
     //Props
-    public static int Score
+    public int Score
     {
         get
         {
@@ -29,6 +29,16 @@ public class ScoreController : MonoBehaviour
     private void Awake()
     {
         score = 0;
+    }
+
+    //Functions
+    public void AddCoin(int amoint)
+    {
+        score += amoint;
+    }
+    public void MinusCoin(int amount)
+    {
+        score -= amount;
     }
 
 

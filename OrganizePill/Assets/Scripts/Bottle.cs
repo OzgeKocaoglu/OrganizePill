@@ -227,7 +227,6 @@ public class Bottle : MonoBehaviour
         {
             this.BottlePill += 1;
             Debug.Log("Puan eklendi. Yeni Puan:: " + this.BottlePill);
-            ScoreController.Score += 1;
             _controller.playCheck();
 
         }
@@ -247,7 +246,6 @@ public class Bottle : MonoBehaviour
         if (!this.BootleLock)
         {
             this.BottlePill -= 1;
-            ScoreController.Score -= 1;
             Debug.Log("Puan eksildi. Yeni puan:: " + this.BottlePill);
         }
     }

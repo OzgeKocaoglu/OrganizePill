@@ -15,13 +15,18 @@ public class GameManager : MonoBehaviour
     public Transform _spawnPoint;
     public List<Bottle> bottles;
     public List<Shelve> shelves;
-    public bool IsFirstStepFinish = false;
-    public bool IsSecondStepFinish = false;
-    
+    public bool IsFirstStepFinish = false, IsSecondStepFinish = false;
+
+    public ParticleSystem confetti;
+
+    #region Controllers
+    ScoreController _scoreController;
+    public MainUI _myUI;
+    #endregion
     //probs
 
     //Unity Functions
-   private void Awake()
+    private void Awake()
     {
         if(Instance == null)
         {
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
     }
    void Start()
     {
+        confetti.Stop();
+        _scoreController = FindObjectOfType<ScoreController>();
         CreatePill();
     }
 
@@ -71,6 +78,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    //First Level Finish Method
     public void OnAllLock()
     {
        if (bottles[0].BootleLock && bottles[1].BootleLock && bottles[2].BootleLock)
@@ -81,6 +90,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Second Level Finish Method
     public void OnAllBottleAdd()
     {
         Debug.Log("I'm in the on bottle ad");
@@ -88,9 +98,11 @@ public class GameManager : MonoBehaviour
         {
             IsSecondStepFinish = true;
             Debug.Log("Second level is finish");
+            NextLevel();
         }
     }
 
+    //Change Level Method
     public void NextLevel()
     {
         if (IsFirstStepFinish)
@@ -105,7 +117,8 @@ public class GameManager : MonoBehaviour
         }
         if (IsSecondStepFinish)
         {
-
+            _myUI.gameObject.SetActive(true);
+            confetti.Play();
         }
 
 
