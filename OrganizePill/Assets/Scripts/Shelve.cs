@@ -1,78 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shelve : MonoBehaviour
 {
     //variables
-    private int _shelveBottlesCount = 0;
+    private bool _onCorrectBottle = false;
+    UnityEvent OnBottle;
 
 
     //probs
-    public int ShelveBottlesCount
+    public bool OnCorrectBottle
     {
         get
         {
-            return _shelveBottlesCount;
+            return _onCorrectBottle;
         }
         set
         {
-            if(value != 0)
+            if(value != null)
             {
-                _shelveBottlesCount = value;
+                _onCorrectBottle = value;
+                OnBottle.Invoke();
+                Debug.Log("Shelve name: " + this.gameObject.tag + "State: " + _onCorrectBottle);
             }
         }
     }
 
-
-    private void Update()
+    //Unity Funcs
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("I have bottles and my name is:  " + this.gameObject.name + " And my bottle count:: " + this.ShelveBottlesCount);
-        }
+        IniliazeEvents();
     }
 
-    //Unity Funcs
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (this.gameObject.tag == "shelve01")
+        {
+            if (other.tag == "bottle1")
+            {
+
+                OnCorrectBottle = true;
+            }
+            else
+            {
+                Debug.Log("Wrong");
+            }
+        }
+        if (this.gameObject.tag == "shelve02")
+        {
+            if (other.tag == "bottle2")
+            {
+            
+                OnCorrectBottle = true;
+            }
+        }
+        if (this.gameObject.tag == "shelve03")
+        {
+            if (other.tag == "bottle3")
+            {
+            
+                OnCorrectBottle = true;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "bottle1")
         {
             if (this.gameObject.tag == "shelve01")
             {
-                this._shelveBottlesCount += 1;
-            }
-            else
-            {
-
+                OnCorrectBottle = false;
             }
         }
         else if (other.tag == "bottle2")
         {
             if (this.gameObject.tag == "shelve02")
             {
-                this._shelveBottlesCount += 1;
-            }
-            else
-            {
+                OnCorrectBottle = false;
             }
         }
         else if (other.tag == "bottle3")
         {
             if (this.gameObject.tag == "shelve03")
             {
-                this._shelveBottlesCount += 1;
-            }
-            else
-            {
+                OnCorrectBottle = false;
             }
         }
     }
 
+    void IniliazeEvents()
+    {
+        if (OnBottle == null)
+        {
+            OnBottle = new UnityEvent();
+        }
 
-    
+        OnBottle.AddListener(GameManager.Instance.OnAllBottleAdd);
+    }
 
 
-   
-       
+
 }

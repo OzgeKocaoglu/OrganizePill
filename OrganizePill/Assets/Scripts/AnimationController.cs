@@ -43,7 +43,6 @@ public class AnimationController : MonoBehaviour
         onFinish.AddListener(On_finish);
     }
     #region EVENT FUNCS
-
     public void On_finish()
     {
         if(this.gameObject.tag == "bottle1")
@@ -64,7 +63,6 @@ public class AnimationController : MonoBehaviour
             _Cameracontroller.Play("CameraChange");
         }
     }
-
     public void On_playCheck()
     {
         if (this.gameObject.tag == "bottle1")
@@ -101,7 +99,6 @@ public class AnimationController : MonoBehaviour
             Debug.Log("False animation is playing");
         }
     }
-
     #endregion
     public void playCoverAnimation()
     {
@@ -128,7 +125,6 @@ public class AnimationController : MonoBehaviour
     {
         onFalse.Invoke();
     }
-
     public void playFinish()
     {
         onFinish.Invoke();

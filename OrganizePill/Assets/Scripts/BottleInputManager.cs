@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class BottleInputManager : MonoBehaviour, IEventSystemHandler
 {
-
+    //Variables
     GameObject getTarget;
      bool isMouseDragging;
     Vector3 offsetValue;
     Vector3 positionOfScreen;
 
-
+    //Unity Funcs
     void Update()
     {
 

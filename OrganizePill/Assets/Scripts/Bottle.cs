@@ -11,14 +11,13 @@ public class Bottle : MonoBehaviour
     private List<GameObject> pillsAdded;
     [SerializeField]
     private GameObject _bottleCover;
+    public AnimationController _controller;
+
     //Events
     UnityEvent onPillChange;
     UnityEvent onWrongPill;
     UnityEvent onBottleChange;
     UnityEvent onLockChange;
-
-    public AnimationController _controller;
-
 
     //Props
     public int BottlePill
@@ -60,67 +59,6 @@ public class Bottle : MonoBehaviour
         _controller = this.gameObject.GetComponentInParent<AnimationController>();
         pillsAdded = new List<GameObject>();
     }
-
-    //Functions
-    void IniliazeEvents()
-    {
-        if (onPillChange == null)
-        {
-            onPillChange = new UnityEvent();
-        }
-        if (onWrongPill == null)
-        {
-            onWrongPill = new UnityEvent();
-        }
-        if(onBottleChange == null)
-        {
-            onBottleChange = new UnityEvent();
-        }
-        if(onLockChange == null)
-        {
-            onLockChange = new UnityEvent();
-        }
-        onPillChange.AddListener(AddPill);
-        onBottleChange.AddListener(MinusPill);
-        onWrongPill.AddListener(WrongPill);
-        onLockChange.AddListener(GameManager.Instance.OnAllLock);
-    }
-    #region EVENT FUNCS
-    void AddPill()
-    {
-        if (this.BottlePill < 3)
-        {
-            this.BottlePill += 1;
-            Debug.Log("Puan eklendi. Yeni Puan:: " + this.BottlePill);
-            _controller.playCheck();
-
-        }
-        else
-        {
-            Debug.Log("You've finish this bottle! Congrats!");
-            this.BootleLock = true;
-            Debug.Log("Bottle locked:" + this.BootleLock);
-            _controller.playCoverAnimation();
-            //Lock to bottle animation
-            GameManager.Instance.NextLevel();
-        }
-
-    }
-    void MinusPill()
-    {
-        if (!this.BootleLock)
-        {
-            this.BottlePill -= 1;
-            Debug.Log("Puan eksildi. Yeni puan:: " + this.BottlePill);
-        }
-    }
-    void WrongPill()
-    {
-        _controller.playCross();
-        //Create pill
-        Debug.Log("WRONG PILL ANIMATION!");
-    }
-    #endregion
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "pill1")
@@ -135,7 +73,7 @@ public class Bottle : MonoBehaviour
                     other.tag = "addedPill";
                     pillsAdded.Add(other.gameObject);
                 }
-               
+
             }
             else if (this.gameObject.tag == "bottle2" || this.gameObject.tag == "bottle3")
             {
@@ -144,7 +82,7 @@ public class Bottle : MonoBehaviour
                 {
                     onWrongPill.Invoke();
                     GameManager.Instance.RespawnPill(other.tag);
-                } 
+                }
                 Debug.Log("WRONG PILL:: " + this.gameObject.tag);
                 //TO DO:: ADD CROSS SIGN
             }
@@ -160,7 +98,7 @@ public class Bottle : MonoBehaviour
                     pillsAdded.Add(other.gameObject);
                     other.tag = "addedPill";
                 }
-                
+
             }
             else if (this.gameObject.tag == "bottle1" || this.gameObject.tag == "bottle3")
             {
@@ -185,7 +123,7 @@ public class Bottle : MonoBehaviour
                     pillsAdded.Add(other.gameObject);
                     other.tag = "addedPill";
                 }
-             
+
             }
             else if (this.gameObject.tag == "bottle2" || this.gameObject.tag == "bottle1")
             {
@@ -228,7 +166,7 @@ public class Bottle : MonoBehaviour
                     pillsAdded.Remove(other.gameObject);
                     other.tag = "pill2";
                 }
-                
+
 
             }
             else if (this.gameObject.tag == "bottle3")
@@ -240,22 +178,85 @@ public class Bottle : MonoBehaviour
                     pillsAdded.Remove(other.gameObject);
                     other.tag = "pill3";
                 }
-                
+
             }
         }
     }
 
+    //Functions
     public void MakeChildren()
     {
         for(int i = 0; i< pillsAdded.Count; i++)
         {
             pillsAdded[i].gameObject.transform.SetParent(this.gameObject.transform);
             pillsAdded[i].gameObject.transform.position = pillsAdded[i].gameObject.transform.parent.position;
+            pillsAdded[i].gameObject.tag = pillsAdded[i].gameObject.transform.parent.tag;
             Rigidbody _pillRigidboy = pillsAdded[i].gameObject.GetComponent<Rigidbody>();
             _pillRigidboy.constraints = RigidbodyConstraints.FreezePosition;
             _pillRigidboy.constraints = RigidbodyConstraints.FreezeRotation;
         }
         _bottleCover.gameObject.transform.SetParent(this.gameObject.transform);
     }
+    void IniliazeEvents()
+    {
+        if (onPillChange == null)
+        {
+            onPillChange = new UnityEvent();
+        }
+        if (onWrongPill == null)
+        {
+            onWrongPill = new UnityEvent();
+        }
+        if (onBottleChange == null)
+        {
+            onBottleChange = new UnityEvent();
+        }
+        if (onLockChange == null)
+        {
+            onLockChange = new UnityEvent();
+        }
+        onPillChange.AddListener(AddPill);
+        onBottleChange.AddListener(MinusPill);
+        onWrongPill.AddListener(WrongPill);
+        onLockChange.AddListener(GameManager.Instance.OnAllLock);
+    }
+    #region EVENT FUNCS
+    void AddPill()
+    {
+        if (this.BottlePill < 3)
+        {
+            this.BottlePill += 1;
+            Debug.Log("Puan eklendi. Yeni Puan:: " + this.BottlePill);
+            ScoreController.Score += 1;
+            _controller.playCheck();
+
+        }
+        else
+        {
+            Debug.Log("You've finish this bottle! Congrats!");
+            this.BootleLock = true;
+            Debug.Log("Bottle locked:" + this.BootleLock);
+            _controller.playCoverAnimation();
+            //Lock to bottle animation
+            GameManager.Instance.NextLevel();
+        }
+
+    }
+    void MinusPill()
+    {
+        if (!this.BootleLock)
+        {
+            this.BottlePill -= 1;
+            ScoreController.Score -= 1;
+            Debug.Log("Puan eksildi. Yeni puan:: " + this.BottlePill);
+        }
+    }
+    void WrongPill()
+    {
+        _controller.playCross();
+        //Create pill
+        Debug.Log("WRONG PILL ANIMATION!");
+    }
+    #endregion
 
 }

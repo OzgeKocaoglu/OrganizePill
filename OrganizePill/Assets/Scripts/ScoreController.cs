@@ -7,23 +7,31 @@ using UnityEditor.Animations;
 public class ScoreController : MonoBehaviour
 {
     //Variables
-    private int score;
-
-
+    private static int score;
 
     //Props
-
-    private void Start()
+    public static int Score
     {
-       
+        get
+        {
+            return score;
+        }
+        set
+        {
+            if(value != 0)
+            {
+                score = value;
+            }
+        }
     }
 
-     public void Update()
-     {
-        
-     }
+    //Unity Funcs
+    private void Awake()
+    {
+        score = 0;
+    }
 
-   
+
 
 
 }

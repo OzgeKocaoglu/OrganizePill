@@ -14,21 +14,11 @@ public class GameManager : MonoBehaviour
     private Transform[] _pill;
     public Transform _spawnPoint;
     public List<Bottle> bottles;
-    private int lockCount = 0;
+    public List<Shelve> shelves;
     public bool IsFirstStepFinish = false;
+    public bool IsSecondStepFinish = false;
     
     //probs
-    public int LockCount
-    {
-        get { return lockCount; }
-        set
-        {
-            if(value != 0)
-            {
-                lockCount = value;
-            }
-        }
-    }
 
     //Unity Functions
    private void Awake()
@@ -91,7 +81,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
+    public void OnAllBottleAdd()
+    {
+        Debug.Log("I'm in the on bottle ad");
+        if(shelves[0].OnCorrectBottle && shelves[1].OnCorrectBottle && shelves[2].OnCorrectBottle)
+        {
+            IsSecondStepFinish = true;
+            Debug.Log("Second level is finish");
+        }
+    }
 
     public void NextLevel()
     {
@@ -105,6 +103,11 @@ public class GameManager : MonoBehaviour
             bottles[2].MakeChildren();
 
         }
+        if (IsSecondStepFinish)
+        {
+
+        }
+
 
     }
 }
